@@ -1,0 +1,17 @@
+[profile.default]
+src = "code"
+script = "deployment"
+test = "test"
+libs = ["lib"]
+solc_version = "0.8.28"
+remappings = [
+    "@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/",
+    "forge-std/=lib/forge-std/src/",
+]
+
+[rpc_endpoints]
+anvil = "http://127.0.0.1:8545"
+bsc_testnet = "${BSC_TESTNET_RPC_URL}"
+
+[etherscan]
+bsc_testnet = { key = "${ETHERSCAN_API_KEY}", chain = 97 }
