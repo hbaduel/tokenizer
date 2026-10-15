@@ -26,7 +26,7 @@ expect_revert() {
         echo "    FAIL: transaction should have reverted" >&2
         exit 1
     fi
-    ok "reverted -> $(grep -o '[A-Za-z]*([^()]*)$' <<< "$output" | tail -1)"
+    ok "reverted -> $(grep -o '[A-Za-z0-9_]*([^()]*)$' <<< "$output" | tail -1)"
 }
 
 balance() { cast call "$TOKEN" "balanceOf(address)" "$1" --rpc-url "$RPC" | cast --from-wei; }

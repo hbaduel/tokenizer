@@ -11,7 +11,7 @@ DEPLOY     := deployment/DeployHbaduel42Token.s.sol
 
 .DEFAULT_GOAL := help
 
-.PHONY: all install foundry deps build test anvil node deploy-bsc deploy-bsc-token fmt clean help account
+.PHONY: all install foundry deps build test anvil node deploy-bsc deploy-bsc-token demo-bsc demo-bsc-token fmt clean help account
 
 all: install test
 
@@ -25,6 +25,8 @@ help:
 	@echo "make account          Import $(ACCOUNT) (override with ACCOUNT=<name>) into Foundry keystore if missing"
 	@echo "make deploy-bsc       Deploy MultiSig42 + Hbaduel42Token on BSC Testnet and verify (needs .env)"
 	@echo "make deploy-bsc-token Deploy Hbaduel42Token alone on BSC Testnet and verify (needs .env)"
+	@echo "make demo-bsc         Multisig demo on BSC Testnet"
+	@echo "make demo-bsc-token   Token-only demo on BSC Testnet"
 	@echo "make fmt              Format Solidity files"
 	@echo "make clean            Remove build artifacts"
 
@@ -75,6 +77,14 @@ deploy-bsc: account
 
 deploy-bsc-token: account
 	$(FORGE) script $(DEPLOY) --sig "run(bool)" false --rpc-url bsc_testnet --account $(ACCOUNT) --broadcast --verify --legacy
+
+# Real multisig demo on BSC Testnet
+demo-bsc:
+	./deployment/demo-bsc-multisig.sh
+
+# Token-only demo on BSC Testnet
+demo-bsc-token:
+	./deployment/demo-bsc-token.sh
 
 fmt:
 	$(FORGE) fmt --check
