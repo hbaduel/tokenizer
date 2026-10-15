@@ -11,7 +11,7 @@ remappings = [
 
 [rpc_endpoints]
 anvil = "http://127.0.0.1:8545"
-bsc_testnet = "${BSC_TESTNET_RPC_URL}"
+bsc_testnet = "https://data-seed-prebsc-1-s1.bnbchain.org:8545"
 
 [etherscan]
 bsc_testnet = { key = "${ETHERSCAN_API_KEY}", chain = 97 }
